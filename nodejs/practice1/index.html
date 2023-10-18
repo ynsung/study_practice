@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>요청 처리 확인</title>
+</head>
+<body>
+  <h1 id="sound"></h1>
+  <input type="text" id="name">
+  <button onclick="getSound()">API 요청</button>
+  <script>
+    function getSound(){
+      // input에 입력한 value를 받아서 name 변수에 저장해주고 api 요청할 때 싣어서 보냄
+      const name = document.getElementById('name').value
+      fetch(`http://localhost:3000/sound/${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.sound)
+        document.getElementById('sound').innerHTML = data.sound
+        // api 요청 결과를 id가 sound 인 h1에 넣어주겠다
+      });
+    }
+  </script>
+</body>
+</html>
